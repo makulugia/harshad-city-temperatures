@@ -40,6 +40,7 @@ jobs:
 #       run: |
 #         pytest
     - name: Build and push the Docker image
+      uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: makulugia/harshad-city-temperatures
         registry: docker.io
