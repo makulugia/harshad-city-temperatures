@@ -33,8 +33,6 @@ async def runReport(filter):
         async with session.get(geocoding_url) as reGeo:
             reGeo = await reGeo.read()
             geocoding_response = json.loads(reGeo)
-
-
     # geocoding_response = json.loads(reGeo)
 
     cityList = []
@@ -61,14 +59,12 @@ async def runReport(filter):
             forecast_url = apiConf['apis']['forecast_url'] + '?latitude=' + str(lat)
             forecast_url += '&longitude=' + str(long) + '&current_weather=true'
 
-            try:
-                reResp = requests.get(forecast_url).text
-            except Timeout:
-                logging.error("The request timed out.")
-            except requests.exceptions.ConnectionError as re_http:
-                logging.error("Connection error: " + re_http + ".")
-
-            forecast_response = json.loads(reResp)
+            forecast_response = ''
+            async with ClientSession() as session:
+                async with session.get(forecast_url) as reResp:
+                    reResp = await reResp.read()
+                    geocoding_response = json.loads(reResp)
+                    
             cityTemp = forecast_response['current_weather']['temperature']
             if cityTemp > cityMax:
                 cityMaxName = el['name']
