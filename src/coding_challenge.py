@@ -1,9 +1,6 @@
 import os, json
 import argparse
 import json
-import requests
-from requests.exceptions import HTTPError
-from requests.exceptions import Timeout
 import logging
 import yaml
 import asyncio
@@ -30,13 +27,6 @@ async def runReport(filter):
 
     # Find all cities that match a given filter
     geocoding_url = apiConf['apis']['geocoding_url'] + '?name=' + filter
-
-    # try:
-    #     reGeo = requests.get(geocoding_url).text
-    # except Timeout:
-    #     logging.error("The request timed out.")
-    # except requests.exceptions.ConnectionError as re_http:
-    #     logging.error("Connection error: " + re_http + ".")
 
     geocoding_response = ''
     async with ClientSession() as session:
