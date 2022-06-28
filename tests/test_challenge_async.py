@@ -8,7 +8,7 @@ from src.coding_challenge import runReport
 async def test_challenge_async():
     r1, r2, r3 = await runReport('San')
     assert r1.lower().find('san') != -1
-    assert r2.lower().find('san') == -1
+    assert r2.lower().find('san') != -1
     assert len(r3) > 0
 
 @pytest.mark.asyncio
