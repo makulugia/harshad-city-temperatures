@@ -36,10 +36,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run Tests
       run: pytest tests/test_challenge_async.py --asyncio-mode=strict
-      # run: python -m unittest tests/test_challenge_async.py    
-#     - name: Test with pytest
-#       run: |
-#         pytest
     - name: Build and push the Docker image
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
@@ -47,5 +43,3 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-#     - name: Build and push the Docker image
-#       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
