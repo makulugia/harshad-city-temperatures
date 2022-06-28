@@ -1,6 +1,6 @@
 FROM python:3.8
 
-RUN pip install yaml pyyaml aiohttp
+RUN pip install pyyaml aiohttp
 
 COPY . .
 
