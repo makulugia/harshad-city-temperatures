@@ -63,7 +63,7 @@ async def runReport(filter):
             async with ClientSession() as session:
                 async with session.get(forecast_url) as reResp:
                     reResp = await reResp.read()
-                    geocoding_response = json.loads(reResp)
+                    forecast_response = json.loads(reResp)
                     
             cityTemp = forecast_response['current_weather']['temperature']
             if cityTemp > cityMax:
